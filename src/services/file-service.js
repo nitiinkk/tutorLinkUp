@@ -117,7 +117,7 @@ class UserService {
 
             const records = await db.query(sql, sqlParams);
             if (records.rowCount == 0) {
-                throw new NotFoundError("Error while finding the file, try searching with correct parameters");
+                throw new NotFoundError("Error while loading the file feed, try searching with correct parameters");
             }
             return records.rows;
         } catch (error) {

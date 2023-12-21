@@ -23,16 +23,14 @@ export const createClasses = async (req, res, next) => {
 
 export const getClassesFeed = async (req, res, next) => {
     try {
-        const classDetails = await classesService.getFeed({
-            name: req.body.name,
-            class_uuid: uuidv4(),
-            description: req.body.description,
-            created_by_user: req.authorisedUser
+        const classesFeed = await classesService.getFeed({
+            authorisedUser: req.authorisedUser,
+            page: req.query.page
         });
         return res.json({
             success: true,
-            message: "Class created succesfully",
-            data: classDetails,
+            message: "Class feed fetched succesfully",
+            data: classesFeed,
             err: {}
         });
     } catch (error) {

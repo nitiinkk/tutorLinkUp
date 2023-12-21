@@ -25,7 +25,6 @@ class ClassesService {
                 });
 
             if (classDetails) {
-                console.log(classDetails, "debug");
                 await db.query(`INSERT INTO membership(class_uuid, username) values($1, $2) returning id;`, [classDetails.class_uuid, classDetails.created_by_user]);
             }
 
@@ -71,19 +70,30 @@ class ClassesService {
         }
     }
 
-    async getFeed({ name, gender, username, email, role }) {
+    async getFeed({ authorisedUser, page }) {
         try {
-            const userExist = await db.query(`SELECT username from users where username = $1 limit 1;`, [username]).then((result) => {
-                if (result.rowCount == 0) return null;
-                return result.rows[0];
-            });
 
-            if (userExist) {
-                throw new DataError(`User with unique username ${username} already exist !! . Update your username`);
+            const limit = 3;
+            const offset = (page - 1) * limit;
+
+            let sql = `SELECT * FROM classes c WHERE c.class_uuid IN 
+            (SELECT membership.class_uuid FROM membership WHERE membership.username = $1)  `
+
+            let sqlParams = [authorisedUser];
+
+            if (page) {
+                sql += ` LIMIT ${limit}`;
             }
 
-            await db.query(`INSERT INTO users (name, gender, username, email, role) values($1, $2, $3, $4, $5);`, [name, gender, username, email, role]);
-            return username;
+            if (offset) {
+                sql += ` OFFSET ${offset}`;
+            }
+
+            const records = await db.query(sql, sqlParams);
+            if (records.rowCount == 0) {
+                throw new NotFoundError("Error while loading the class feed, try searching with correct parameters");
+            }
+            return records.rows;
         } catch (error) {
             throw error;
         }
