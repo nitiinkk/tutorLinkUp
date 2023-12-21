@@ -4,7 +4,7 @@ import { NotFoundError, DataError } from '../utils/errorHandler.js';
 class ClassesService {
     constructor() {
     }
-
+    
     async create({ name, class_uuid, description, authorisedUser }) {
         try {
             const classExist = await db.query(`SELECT class_uuid from classes where class_uuid = $1 limit 1;`, [class_uuid]).then((result) => {
