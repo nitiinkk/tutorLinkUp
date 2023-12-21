@@ -26,7 +26,7 @@ export const validateJwt = (req, res, next) => {
 }
 
 export const isTutor = (req, res, next) => {
-    if (req.authorisedRole !== "tutor") {
+    if (req.authorisedRole !== "tutor" || req.authorisedRole !=="admin") {
         return res.status(403).json({
             message: 'Insufficient Permission to create/enroll Students',
             success: false
