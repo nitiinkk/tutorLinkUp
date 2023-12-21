@@ -1,0 +1,503 @@
+{
+	"info": {
+		"_postman_id": "a0d9ab9d-02da-452c-8d84-11a83ad23627",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15972954"
+	},
+	"item": [
+		{
+			"name": "Login User",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "stud6",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/api/v1/login",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Enroll Students By tutor",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "11121~DE4D4iYFeum1nh5wCgmipVOzu8i5Gb6KtpWhfKQRhN7ZuM3ST9JdoxEMhU8345aY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5pdGlpbmsiLCJyb2xlIjoidHV0b3IiLCJpYXQiOjE3MDMwNTc0OTAsImV4cCI6MTcwMzE0Mzg5MH0.A9SH-Q7uwH7QTwdGtDw2FhyPJZOxwt4Ui1DTsFr56Yw",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "stud6",
+							"type": "text"
+						},
+						{
+							"key": "gender",
+							"value": "male",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Student Threee",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "stud3@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "role",
+							"value": "student",
+							"type": "text"
+						},
+						{
+							"key": "class_uuid",
+							"value": "97a351eb-ad32-43be-b8e7-6fe35e088d6d",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/api/v1/students",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"students"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Classes",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "11121~DE4D4iYFeum1nh5wCgmipVOzu8i5Gb6KtpWhfKQRhN7ZuM3ST9JdoxEMhU8345aY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5pdGlpbmsiLCJyb2xlIjoidHV0b3IiLCJpYXQiOjE3MDMxNTUxMjUsImV4cCI6MTcwMzI0MTUyNX0.jL7VriA8ZrR8WEWEgHw2xPoWZcL6cjKbi2Js8Khn9h4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "TennisClass 4",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "this is tennis class 4",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/api/v1/createClasses",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"createClasses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Students By tutor",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "11121~DE4D4iYFeum1nh5wCgmipVOzu8i5Gb6KtpWhfKQRhN7ZuM3ST9JdoxEMhU8345aY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5pdGlpbmsiLCJyb2xlIjoidHV0b3IiLCJpYXQiOjE3MDMwNTc0OTAsImV4cCI6MTcwMzE0Mzg5MH0.A9SH-Q7uwH7QTwdGtDw2FhyPJZOxwt4Ui1DTsFr56Yw",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/api/v1/student/stud9",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"student",
+						"stud9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Students By tutor",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "11121~DE4D4iYFeum1nh5wCgmipVOzu8i5Gb6KtpWhfKQRhN7ZuM3ST9JdoxEMhU8345aY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5pdGlpbmsiLCJyb2xlIjoidHV0b3IiLCJpYXQiOjE3MDMwNTc0OTAsImV4cCI6MTcwMzE0Mzg5MH0.A9SH-Q7uwH7QTwdGtDw2FhyPJZOxwt4Ui1DTsFr56Yw",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "avatar_state",
+							"value": "bubueuwufuuwufuerscbsbcbcbcbwububueuwufuerscbsbcbcbcbwububueuwufuerscbsbcbcbcbwububueuwufuerscbsbcbcbcbwububueuwufuerscbsbcbcbcbwububueuwufuer",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/api/v1/students/stud9",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"students",
+						"stud9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "File Create By tutor",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "11121~DE4D4iYFeum1nh5wCgmipVOzu8i5Gb6KtpWhfKQRhN7ZuM3ST9JdoxEMhU8345aY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5pdGlpbmsiLCJyb2xlIjoidHV0b3IiLCJpYXQiOjE3MDMxNTUxMjUsImV4cCI6MTcwMzI0MTUyNX0.jL7VriA8ZrR8WEWEgHw2xPoWZcL6cjKbi2Js8Khn9h4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "filename",
+							"value": "file5xw",
+							"type": "text"
+						},
+						{
+							"key": "class_uuid",
+							"value": "20a1302e-93d4-4f29-93a8-6ef43ea2124e",
+							"type": "text"
+						},
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/Users/nitink/Downloads/testfile.txt"
+						},
+						{
+							"key": "filetype",
+							"value": "pdf",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/api/v1/files",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"files"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "File Update By tutor",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "11121~DE4D4iYFeum1nh5wCgmipVOzu8i5Gb6KtpWhfKQRhN7ZuM3ST9JdoxEMhU8345aY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5pdGlpbmsiLCJyb2xlIjoidHV0b3IiLCJpYXQiOjE3MDMwNTc0OTAsImV4cCI6MTcwMzE0Mzg5MH0.A9SH-Q7uwH7QTwdGtDw2FhyPJZOxwt4Ui1DTsFr56Yw",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "filename",
+							"value": "newFilename",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/api/v1/files/32",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"files",
+						"32"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "File Delete By tutor",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "11121~DE4D4iYFeum1nh5wCgmipVOzu8i5Gb6KtpWhfKQRhN7ZuM3ST9JdoxEMhU8345aY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5pdGlpbmsiLCJyb2xlIjoidHV0b3IiLCJpYXQiOjE3MDMwNTc0OTAsImV4cCI6MTcwMzE0Mzg5MH0.A9SH-Q7uwH7QTwdGtDw2FhyPJZOxwt4Ui1DTsFr56Yw",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/api/v1/files/24",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"files",
+						"24"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch Classes Feed",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "11121~DE4D4iYFeum1nh5wCgmipVOzu8i5Gb6KtpWhfKQRhN7ZuM3ST9JdoxEMhU8345aY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5pdGlpbmsiLCJyb2xlIjoidHV0b3IiLCJpYXQiOjE3MDMxNTUxMjUsImV4cCI6MTcwMzI0MTUyNX0.jL7VriA8ZrR8WEWEgHw2xPoWZcL6cjKbi2Js8Khn9h4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "TennisClass3",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "this is tennis class 3",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/api/v1/classesfeed?page=1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"classesfeed"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch Files Feed",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN0dWQ2Iiwicm9sZSI6InN0dWRlbnQiLCJpYXQiOjE3MDMxMzUxMjcsImV4cCI6MTcwMzIyMTUyN30.nQSF4ogATd5feQZ6dHxZPXSh6Osvb9OQ-bS5PaTeTTo",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/api/v1/filesfeed?title=new&page=1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"filesfeed"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "pdf",
+							"disabled": true
+						},
+						{
+							"key": "title",
+							"value": "new"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
