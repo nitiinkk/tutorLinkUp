@@ -3,7 +3,6 @@ const userService = new UserService();
 
 export const enrollUser = async (req, res, next) => {
     try {
-        console.log(req.userDetails, " decode")
         let enrollDetails = await userService.enroll({
             name: req.body.name,
             gender: req.body.gender,
@@ -12,8 +11,9 @@ export const enrollUser = async (req, res, next) => {
             role: req.body.role,
             class_uuid: req.body.class_uuid,
         });
+
         const response = req.userDetails;
-        enrollDetails = {...enrollDetails, ...response};
+        enrollDetails = { ...enrollDetails, ...response };
         return res.json({
             success: true,
             message: "User Enrolled succesfully",
@@ -36,7 +36,6 @@ export const createStudent = async (req, res, next) => {
             class_uuid: req.body.class_uuid
         });
         req.userDetails = userDetails;
-        console.log(req.userDetails, " decode1")
         next();
     } catch (error) {
         next(error);
@@ -45,7 +44,7 @@ export const createStudent = async (req, res, next) => {
 
 export const deleteStudent = async (req, res, next) => {
     try {
-        await userService.delete({username: req.params.username});
+        await userService.delete({ username: req.params.username });
         return res.json({
             success: true,
             message: `User ${req.params.username} Deleted succesfully`,
@@ -53,7 +52,6 @@ export const deleteStudent = async (req, res, next) => {
             err: {}
         });
     } catch (error) {
-        console.log(error, " line 39");
         next(error);
     }
 }

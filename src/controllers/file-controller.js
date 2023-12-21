@@ -6,7 +6,6 @@ export const createFiles = async (req, res, next) => {
         const fileDetails = await fileService.create(req, {
             uploaded_by: req.authorisedUser
         });
-        console.log("line 14");
         return res.json({
             success: true,
             message: "File Uploaded Successfully",
@@ -20,7 +19,7 @@ export const createFiles = async (req, res, next) => {
 
 export const deleteFiles = async (req, res, next) => {
     try {
-        const response = await fileService.delete({fileId: req.params.fileId, uploaded_by: req.authorisedUser});
+        const response = await fileService.delete({ fileId: req.params.fileId, uploaded_by: req.authorisedUser });
         return res.json({
             success: true,
             message: `File ${response.filename} Deleted succesfully from class ${response.class_uuid}`,
@@ -28,7 +27,6 @@ export const deleteFiles = async (req, res, next) => {
             err: {}
         });
     } catch (error) {
-        console.log(error, " line 39");
         next(error);
     }
 }
@@ -55,7 +53,7 @@ export const getFilesFeed = async (req, res, next) => {
     try {
         const response = await fileService.getFeed({
             username: req.authorisedUser,
-            page: req.query.page, 
+            page: req.query.page,
             title: req.query.title,
             type: req.query.type
         });

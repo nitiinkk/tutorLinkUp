@@ -3,7 +3,6 @@ const userService = new UserService();
 
 export const login = async (req, res, next) => {
     try {
-        console.log(req.body.username);
         const userDetails = await userService.login({
             username: req.body.username
         });

@@ -22,9 +22,10 @@ router.post('/files', validateJwt, isTutor, createFiles);
 router.put('/files/:fileId', validateJwt, isTutor, updateFiles);
 router.delete('/files/:fileId', validateJwt, isTutor, deleteFiles);
 
-//pagination
+//classesfeed
 router.get('/classesfeed', validateJwt, getClassesFeed);
 
+//filesfeed
 router.get('/filesfeed', validateJwt, getFilesFeed);
 
 

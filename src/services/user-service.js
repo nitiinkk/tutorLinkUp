@@ -55,7 +55,7 @@ class UserService {
             if (!userExist) {
                 await db.query(`INSERT INTO users (name, gender, username, email, role) values($1, $2, $3, $4, $5);`, [name, gender, username, email, role]);
             }
-            
+
             return userExist;
 
         } catch (error) {
@@ -66,20 +66,17 @@ class UserService {
 
     async update({ username, avatar_state }) {
         try {
-            console.log(username, avatar_state, " line60");
             const updatedRecord = await db.query(`UPDATE users set avatar_state = $2, updated_at = localtimestamp where username = $1 returning *;`, [username, avatar_state]).then((result) => {
                 if (result.rowCount == 0) return null;
                 return result.rows[0];
             });
 
-            if(!updatedRecord) {
+            if (!updatedRecord) {
                 throw new NotFoundError(`Failed to update user ${username} as user doesn't exist`);
             }
 
             return updatedRecord;
         } catch (error) {
-            console.log("lien 71");
-            console.log(error.message);
             if (error?.code) throw new DatabaseError(error?.message, error?.stack);
             throw error;
         }
@@ -87,7 +84,6 @@ class UserService {
 
     async delete({ username }) {
         try {
-            console.log(username, " line80")
             const deletedUserRecord = await db.query(`DELETE from users where username = $1 returning *;`, [username]).then((result) => {
                 if (result.rowCount == 0) return null;
                 return result.rows[0];
@@ -95,7 +91,7 @@ class UserService {
 
             if (!deletedUserRecord) {
                 throw new NotFoundError(`User ${username} doesn't exist. It is already dropped from class!!`);
-            } 
+            }
 
             return deletedUserRecord;
         } catch (error) {
@@ -106,20 +102,18 @@ class UserService {
 
     async enroll({ name, gender, username, email, role, class_uuid }) {
         try {
-            console.log(name, gender, username, email, role, class_uuid);
             const classExist = await db.query(`SELECT * from classes where class_uuid = $1 limit 1;`, [class_uuid]).then((result) => {
                 if (result.rowCount == 0) return null;
                 return result.rows[0];
             })
 
-            if(!classExist) {
-                console.log(classExist, " --> ", class_uuid);
+            if (!classExist) {
                 throw new DataError(`Class ${class_uuid} Doesn't exist to which the user is trying to enroll`);
             }
-            
+
             //update student membership
             const studentMembershipId = await db.query(`INSERT INTO student_membership(class_uuid, username) values($1, $2) returning id;`, [class_uuid, username]).then((result => result.rows[0]));
-            return {student_membership: studentMembershipId};
+            return { student_membership: studentMembershipId };
         } catch (error) {
             if (error?.code) throw new DatabaseError(error?.message, error?.stack);
             throw error;

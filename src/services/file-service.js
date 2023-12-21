@@ -16,7 +16,6 @@ class UserService {
             response = { ...fields, ...files['file'][0] };
             return response;
         } catch (error) {
-            console.log('19');
             throw error;
         }
     }
@@ -63,8 +62,6 @@ class UserService {
 
             return updatedFile.rows[0];
         } catch (error) {
-            console.log("lien 71");
-            console.log(error.message);
             if (error?.code) throw new DatabaseError(error?.message, error?.stack);
             throw error;
         }
@@ -119,7 +116,7 @@ class UserService {
             }
 
             const records = await db.query(sql, sqlParams);
-            if(records.rowCount == 0) {
+            if (records.rowCount == 0) {
                 throw new NotFoundError("Error while finding the file, try searching with correct parameters");
             }
             return records.rows;

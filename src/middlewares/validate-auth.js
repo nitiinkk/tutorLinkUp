@@ -5,8 +5,8 @@ export const validateJwt = (req, res, next) => {
     const token = req.headers["x-access-token"];
     if (!token) {
         return res.status(403).send({
-          message: "No token provided!",
-          success: false
+            message: "No token provided!",
+            success: false
         });
     }
 
@@ -19,7 +19,7 @@ export const validateJwt = (req, res, next) => {
             })
         }
 
-        req.authorisedUser = decoded.username;  
+        req.authorisedUser = decoded.username;
         req.authorisedRole = decoded.role;
         next();
     });

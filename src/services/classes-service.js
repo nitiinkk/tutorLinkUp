@@ -16,11 +16,9 @@ class ClassesService {
                 throw new DataError(`Class with unique uuid ${class_uuid} already exist !!`);
             }
 
-            const classDetails  = await db.query(`INSERT INTO classes (name, class_uuid, description, is_active, created_by_user) values($1, $2, $3, true, $4) RETURNING class_uuid, name, is_active, description;`, [name, class_uuid, description, created_by_user]);
+            const classDetails = await db.query(`INSERT INTO classes (name, class_uuid, description, is_active, created_by_user) values($1, $2, $3, true, $4) RETURNING class_uuid, name, is_active, description;`, [name, class_uuid, description, created_by_user]);
             return classDetails?.rows[0];
         } catch (error) {
-            console.log(error, " line 52");
-            console.log("Pw")
             throw error;
         }
     }
@@ -39,8 +37,6 @@ class ClassesService {
             await db.query(`INSERT INTO users (name, gender, username, email, role) values($1, $2, $3, $4, $5);`, [name, gender, username, email, role]);
             return username;
         } catch (error) {
-            console.log(error, " line 52");
-            console.log("Pw")
             throw error;
         }
     }
@@ -59,8 +55,6 @@ class ClassesService {
             await db.query(`INSERT INTO users (name, gender, username, email, role) values($1, $2, $3, $4, $5);`, [name, gender, username, email, role]);
             return username;
         } catch (error) {
-            console.log(error, " line 52");
-            console.log("Pw")
             throw error;
         }
     }
@@ -79,8 +73,6 @@ class ClassesService {
             await db.query(`INSERT INTO users (name, gender, username, email, role) values($1, $2, $3, $4, $5);`, [name, gender, username, email, role]);
             return username;
         } catch (error) {
-            console.log(error, " line 52");
-            console.log("Pw")
             throw error;
         }
     }

@@ -1,32 +1,31 @@
 export const errorHandler = (err, req, res, next) => {
-    console.log('in error handler ... ');
-	const statusCode = err.statusCode ?? 500;
+  const statusCode = err.statusCode ?? 500;
 
-	return res.status(statusCode ?? 500).json({
-		    message: err.message ? err.message : "",
-        name: err.name,
-        stack: err.stack ? err.stack : "",
-        success: false,
-	});
+  return res.status(statusCode ?? 500).json({
+    message: err.message ? err.message : "",
+    name: err.name,
+    stack: err.stack ? err.stack : "",
+    success: false,
+  });
 }
 
 export class NotFoundError extends Error {
-    constructor(message) {
-      super();
-      this.status = 404;
-      this.name = "Not found.";
-      this.message = message;
-    }
+  constructor(message) {
+    super();
+    this.status = 404;
+    this.name = "Not found.";
+    this.message = message;
+  }
 }
 
 
 export class DataError extends Error {
-    constructor(message) {
-      super();
-      this.status = 400;
-      this.name = "Data Error";
-      this.message = message;
-    }
+  constructor(message) {
+    super();
+    this.status = 400;
+    this.name = "Data Error";
+    this.message = message;
+  }
 }
 
 export class DatabaseError extends Error {
