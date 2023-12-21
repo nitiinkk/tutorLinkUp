@@ -17,6 +17,7 @@ class ClassesService {
             }
 
             const classDetails = await db.query(`INSERT INTO classes (name, class_uuid, description, is_active, created_by_user) values($1, $2, $3, true, $4) RETURNING class_uuid, name, is_active, description;`, [name, class_uuid, description, created_by_user]);
+            await db.query(`INSERT INTO membership (class_uuid, created_by_user) values($1, $2) returning id;`, [class_uuid, created_by_user]);
             return classDetails?.rows[0];
         } catch (error) {
             throw error;

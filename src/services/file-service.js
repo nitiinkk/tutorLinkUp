@@ -95,7 +95,7 @@ class UserService {
             let sql = `SELECT a.filename, a.class_uuid, a.file_url, a.file_type, a.uploaded_by 
                         FROM attachment a
                         JOIN classes c ON c.class_uuid = a.class_uuid
-                        WHERE c.class_uuid IN (SELECT student_membership.class_uuid FROM student_membership WHERE student_membership.username = $1)  `
+                        WHERE c.class_uuid IN (SELECT membership.class_uuid FROM membership WHERE membership.username = $1)  `
             let sqlParams = [username];
 
             if (type) {

@@ -38,7 +38,7 @@ class UserService {
 
     async create({ name, gender, username, email, role, class_uuid }) {
         try {
-            const userMembershipExist = await db.query(`SELECT username from student_membership where username = $1 and class_uuid = $2;`, [username, class_uuid]).then((result) => {
+            const userMembershipExist = await db.query(`SELECT username from membership where username = $1 and class_uuid = $2;`, [username, class_uuid]).then((result) => {
                 if (result.rowCount >= 1) return true;
                 return false;
             });
@@ -112,7 +112,7 @@ class UserService {
             }
 
             //update student membership
-            const studentMembershipId = await db.query(`INSERT INTO student_membership(class_uuid, username) values($1, $2) returning id;`, [class_uuid, username]).then((result => result.rows[0]));
+            const studentMembershipId = await db.query(`INSERT INTO membership(class_uuid, username) values($1, $2) returning id;`, [class_uuid, username]).then((result => result.rows[0]));
             return { student_membership: studentMembershipId };
         } catch (error) {
             if (error?.code) throw new DatabaseError(error?.message, error?.stack);
