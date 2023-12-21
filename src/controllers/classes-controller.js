@@ -8,7 +8,7 @@ export const createClasses = async (req, res, next) => {
             name: req.body.name,
             class_uuid: uuidv4(),
             description: req.body.description,
-            created_by_user: req.authorisedUser
+            authorisedUser: req.authorisedUser
         });
         return res.json({
             success: true,

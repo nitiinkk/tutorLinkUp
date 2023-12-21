@@ -108,7 +108,7 @@ class UserService {
             }
 
             if (page) {
-                sql += ` LIMIT ${page}`;
+                sql += ` LIMIT ${limit}`;
             }
 
             if (offset) {

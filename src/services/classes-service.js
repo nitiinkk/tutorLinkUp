@@ -5,7 +5,7 @@ class ClassesService {
     constructor() {
     }
 
-    async create({ name, class_uuid, description, created_by_user }) {
+    async create({ name, class_uuid, description, authorisedUser }) {
         try {
             const classExist = await db.query(`SELECT class_uuid from classes where class_uuid = $1 limit 1;`, [class_uuid]).then((result) => {
                 if (result.rowCount == 0) return null;
@@ -16,9 +16,20 @@ class ClassesService {
                 throw new DataError(`Class with unique uuid ${class_uuid} already exist !!`);
             }
 
-            const classDetails = await db.query(`INSERT INTO classes (name, class_uuid, description, is_active, created_by_user) values($1, $2, $3, true, $4) RETURNING class_uuid, name, is_active, description;`, [name, class_uuid, description, created_by_user]);
-            await db.query(`INSERT INTO membership (class_uuid, created_by_user) values($1, $2) returning id;`, [class_uuid, created_by_user]);
-            return classDetails?.rows[0];
+            const classDetails = await db.query(`INSERT INTO classes (name, class_uuid, description, is_active, created_by_user) values($1, $2, $3, true, $4) RETURNING class_uuid, name, is_active, description, created_by_user;`, [name, class_uuid, description, authorisedUser])
+                .then((result) => {
+                    if (result.rowCount > 0) {
+                        return result.rows[0];
+                    }
+                    return null;
+                });
+
+            if (classDetails) {
+                console.log(classDetails, "debug");
+                await db.query(`INSERT INTO membership(class_uuid, username) values($1, $2) returning id;`, [classDetails.class_uuid, classDetails.created_by_user]);
+            }
+
+            return classDetails;
         } catch (error) {
             throw error;
         }
