@@ -10,12 +10,12 @@ import { createFiles, updateFiles, deleteFiles, getFilesFeed } from '../../contr
 router.post('/login', login);
 
 //crud operation for student
-router.post('/students', validateJwt, isTutor, createStudent, enrollUser);
-router.put('/students/:username', validateJwt, isTutor, updateStudent);
-router.delete('/students/:username', validateJwt, isTutor, deleteStudent);
+router.post('/students', validateJwt, isTutor, createStudent, enrollUser); 
+router.put('/students/:username', validateJwt, isTutor, updateStudent); 
+router.delete('/students/:username', validateJwt, isTutor, deleteStudent); 
 
 //classes endpoint
-router.post('/createClasses', validateJwt, isTutor, createClasses);
+router.post('/createClasses', validateJwt, isTutor, createClasses); 
 
 //crud for files
 router.post('/files', validateJwt, isTutor, createFiles);
