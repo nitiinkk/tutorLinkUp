@@ -1,36 +1,36 @@
 import jwt from 'jsonwebtoken';
 const secretKey = process.env.SECRETKEY;
 
-export const validateJwt = (req, res, next) => {
-    const token = req.headers["x-access-token"];
-    if (!token) {
-        return res.status(403).send({
-            message: "No token provided!",
-            success: false
-        });
-    }
-
-    jwt.verify(token, secretKey, (err, decoded) => {
-        if (err) {
-            return res.status(401).json({
-                message: 'Unauthorized user',
-                reason: err,
+    export const validateJwt = (req, res, next) => {
+        const token = req.headers["x-access-token"];
+        if (!token) {
+            return res.status(403).send({
+                message: "No token provided!",
                 success: false
-            })
+            });
         }
 
-        req.authorisedUser = decoded.username;
-        req.authorisedRole = decoded.role;
-        next();
-    });
-}
+        jwt.verify(token, secretKey, (err, decoded) => {
+            if (err) {
+                return res.status(401).json({
+                    message: 'Unauthorized user',
+                    reason: err,
+                    success: false
+                })
+            }
 
-export const isTutor = (req, res, next) => {
-    if (req.authorisedRole !== "tutor" || req.authorisedRole !=="admin") {
-        return res.status(403).json({
-            message: 'Insufficient Permission to create/enroll Students',
-            success: false
+            req.authorisedUser = decoded.username;
+            req.authorisedRole = decoded.role;
+            next();
         });
     }
-    next();
-}
+
+    export const isTutor = (req, res, next) => {
+        if (req.authorisedRole !== "tutor" || req.authorisedRole !=="admin") {
+            return res.status(403).json({
+                message: 'Insufficient Permission to create/enroll Students',
+                success: false
+            });
+        }
+        next();
+    }
